@@ -1,5 +1,5 @@
 <?php
-
+require 'conexao.php';
 
 if (isset($_POST['cadastrar'])) {
     $nome = $_POST['nome'];
@@ -7,13 +7,7 @@ if (isset($_POST['cadastrar'])) {
     $senha = $_POST['senha'];
     $tipo = $_POST['tipo'];
 
-    // Criando conexão com o banco de dados
-    $conn = mysqli_connect('localhost', 'root', '', 'destrava');
-
-    // Verificando se houve erro de conexão
-    if (!$conn) {
-        die("Conexão falhou: " . mysqli_connect_error());
-    }
+    
     if (empty($tipo)) {
         echo "Você precisa escolher uma opção!";
     } else if ($tipo == "aluno") {
