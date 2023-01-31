@@ -1,3 +1,36 @@
+<?php
+
+
+//puxando a conexao do arquivo conexao.php
+require 'conexao.php';
+
+
+  // Receber dados do formulário
+  if (isset($_POST['criar'])) {
+  $titulo = $_POST['titulo'];
+  $descricao = $_POST['descricao'];
+  $valor = $_POST['valor'];
+
+  // Preparar a consulta SQL
+  $sql = "INSERT INTO pacotes (produto, descricao, preco) VALUES ('$titulo', '$descricao', '$valor')";
+
+  // Executar a consulta e verificar se foi bem-sucedida
+  if (mysqli_query($conn, $sql)) {
+    echo "Dados inseridos com sucesso.";
+  }
+
+}
+
+$sql = "select produto,descricao,preco from pacotes where id = 0"; //coloquei id zero so para testar se iria aparecer o pacote
+  $result = mysqli_query($conn, $sql);
+  $pacote = mysqli_fetch_assoc($result);
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -117,32 +150,34 @@
 
                 <div class="profile-section-main">
                     <div class="tab-content profile-tabs-content">
+                     <form action="" method="post">
                         <div class="card mb-3">
                             <h5 class="titulos-area-anuncios">Criar anúncio</h5>
                             <div class="post-editor">
                                 <h6 class="form-cria-anuncio">Título da aula</h6>
                                 <label class="label-input" for="">
-                                    <input type="titulo" placeholder="Título">
+                                    <input type="titulo" name="titulo" placeholder="Título">
                                 </label>
                                 <h6 class="form-cria-anuncio">Descrição</h6>
-                                <textarea name="post-field" id="post-field" class="post-field"
+                                <textarea name="descricao" id="post-field" class="post-field"
                                     placeholder="O que seu aluno irá aprender?"></textarea>
                                 <h6 class="form-cria-anuncio">Valor</h6>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">R$</span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <input type="text" class="form-control" name="valor" aria-label="Amount (to the nearest dollar)">
                                     <div class="input-group-append">
                                         <span class="input-group-text">.00</span>
                                     </div>
                                 </div>
                                 <div class="d-flex">
-                                    <button class="btn btn-success px-4 py-1">Criar anúncio</button>
+                                    <button class="btn btn-success px-4 py-1" type="submit" name="criar">Criar anúncio</button>
                                 </div>
 
                             </div>
                         </div>
+                     </form>
 
                         <div class="meus-anuncios">
                             <div class="card mb-3">
@@ -169,10 +204,9 @@
                                         <p>Adrielson justino</p>
                                     </div>
                                     <div class="sp-content">
-                                        <div class="titulo-anuncio">Banco de dados</div>
-                                        <p class="sp-paragraph mb-0">Nesta aula vai aprender sobre SQL usaremos o
-                                            PostgreSQL</p>
-                                        <div class="valor-anunc">R$ 50,00</div>
+                                        <div class="titulo-anuncio"><?php echo $pacote['produto']; ?></div>
+                                        <p class="sp-paragraph mb-0"><?php echo $pacote['descricao']; ?></p>
+                                        <div class="valor-anunc">R$ <?php echo $pacote['preco']; ?></div>
                                     </div>
 
                                 </div>
@@ -191,3 +225,5 @@
     </body>
 
 </html>
+
+

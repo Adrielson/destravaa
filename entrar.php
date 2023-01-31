@@ -1,4 +1,7 @@
 <?php
+
+
+//puxando a conexao do arquivo conexao.php
 require 'conexao.php';
 
 if (isset($_POST['cadastrar'])) {
@@ -7,7 +10,7 @@ if (isset($_POST['cadastrar'])) {
     $senha = $_POST['senha'];
     $tipo = $_POST['tipo'];
 
-    
+
     if (empty($tipo)) {
         echo "Você precisa escolher uma opção!";
     } else if ($tipo == "aluno") {
