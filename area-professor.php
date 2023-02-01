@@ -182,35 +182,47 @@ $sql = "select produto,descricao,preco from pacotes where id = 0"; //coloquei id
                         <div class="meus-anuncios">
                             <div class="card mb-3">
                             <h5 class="titulos-area-anuncios">Meus anúncios</h5>
-                            <div class="aula">
-                                    <div class="sp-author">
-                                        <a href="#" class="sp-author-avatar"><img
-                                                src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
-                                        <p>Adrielson justino</p>
-                                    </div>
-                                    <div class="sp-content">
-                                        <h6 class="titulo-anuncio">Lógica de Programação</h6>
-                                        <p class="sp-paragraph mb-0">Nesta aula vou te ensinar lógica de programação e
-                                            farei uma introdução a linguagem de programação Python</p>
-                                        <div class="valor-anunc">R$ 50,00</div>
-                                    </div>
-
-                                </div>
-
-                                <div class="aula">
-                                    <div class="sp-author">
-                                        <a href="#" class="sp-author-avatar"><img
-                                                src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
-                                        <p>Adrielson justino</p>
-                                    </div>
-                                    <div class="sp-content">
-                                        <div class="titulo-anuncio"><?php echo $pacote['produto']; ?></div>
-                                        <p class="sp-paragraph mb-0"><?php echo $pacote['descricao']; ?></p>
-                                        <div class="valor-anunc">R$ <?php echo $pacote['preco']; ?></div>
-                                    </div>
-
-                                </div>
-
+                            <?php
+                                $sql = "SELECT * FROM pacotes";
+                                $result = mysqli_query($conn, $sql);
+                                if (mysqli_num_rows($result) > 0) {
+                                                                    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                                                foreach ($rows as $row) { ?>
+                                                                                            <div class="aula">
+                                                                                                <div class="sp-author">
+                                                                                                <a href="#" class="sp-author-avatar">
+                                                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                                                                                                </a>
+                                                                                                <p>Adrielson</p>
+                                                                                                </div>
+                                                                                                <div class="sp-content">
+                                                                                                <div class="titulo-anuncio"><?php echo $row["produto"]; ?></div>
+                                                                                                <p class="sp-paragraph mb-0"><?php echo $row["descricao"]; ?></p>
+                                                                                                <div class="valor-anunc">R$ <?php echo $row["preco"]; ?></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <?php
+                                                                                        }
+                                                            } else {
+                                        ?>
+                                        <div>
+                                        <div class="aula">
+                                                <div class="sp-author">
+                                                <a href="#" class="sp-author-avatar">
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                                                </a>
+                                                <p>- - -</p>
+                                                </div>
+                                                <div class="sp-content">
+                                                <div class="titulo-anuncio">SEM PRODUTO CADASTRADO</div>
+                                                <p class="sp-paragraph mb-0">- - -</p>
+                                                <div class="valor-anunc">R$ - - -</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -225,5 +237,12 @@ $sql = "select produto,descricao,preco from pacotes where id = 0"; //coloquei id
     </body>
 
 </html>
+
+
+
+
+
+
+
 
 
