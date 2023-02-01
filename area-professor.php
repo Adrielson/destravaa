@@ -245,4 +245,3 @@ $sql = "select produto,descricao,preco from pacotes where id = 0"; //coloquei id
 
 
 
-
