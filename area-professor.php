@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
 //puxando a conexao do arquivo conexao.php
 require 'conexao.php';
