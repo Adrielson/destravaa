@@ -47,7 +47,7 @@ if (isset($_POST['cadastrar'])) {
     mysqli_close($conn);
 }
 
-
+// form do login
 if (isset($_POST['submit'])) {
 
     // Recebe os dados do formulário
@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
             header("Location: area-professor.php");
         }
         //   exit();
-    } else {
+     } else {
         // Consulta a tabela "alunos"
         $sql = "SELECT * FROM alunos WHERE email='$email' AND senha='$senha'";
         $result = mysqli_query($conn, $sql);
