@@ -14,7 +14,7 @@ session_start();
   $valor = $_POST['valor'];
 
   // Preparar a consulta SQL
-  $sql = "INSERT INTO pacotes (produto, descricao, preco, idProfessor)
+  $sql = "INSERT INTO pacotes (produto, descricao, preco, professor)
 VALUES ('$titulo', '$descricao', '$valor', '".$_SESSION['idUsuario']."')";
 
   // Executar a consulta e verificar se foi bem-sucedida
@@ -183,7 +183,9 @@ VALUES ('$titulo', '$descricao', '$valor', '".$_SESSION['idUsuario']."')";
                             <h5 class="titulos-area-anuncios">Meus anúncios</h5>
                             <?php
                               $id_usuario = $_SESSION['idUsuario'];
-                                $sql = "SELECT * FROM pacotes where idProfessor ='$id_usuario'";
+                                $sql = "SELECT * FROM pacotes pac 
+                                JOIN professores pro ON pac.professor = pro.id WHERE pac.professor ='$id_usuario'";
+
                                 $result = mysqli_query($conn, $sql);
                                 if (mysqli_num_rows($result) > 0) {
                                                                     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -193,7 +195,7 @@ VALUES ('$titulo', '$descricao', '$valor', '".$_SESSION['idUsuario']."')";
                                                                                                 <a href="#" class="sp-author-avatar">
                                                                                                     <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
                                                                                                 </a>
-                                                                                                <p>Adrielson</p>
+                                                                                                <p><?php echo $row["nome"]; ?></p>
                                                                                                 </div>
                                                                                                 <div class="sp-content">
                                                                                                 <div class="titulo-anuncio"><?php echo $row["produto"]; ?></div>
@@ -214,7 +216,7 @@ VALUES ('$titulo', '$descricao', '$valor', '".$_SESSION['idUsuario']."')";
                                                 <p>- - -</p>
                                                 </div>
                                                 <div class="sp-content">
-                                                <div class="titulo-anuncio">SEM PRODUTO CADASTRADO</div>
+                                                <div class="titulo-anuncio">Você não possui anúncios cadastrados</div>
                                                 <p class="sp-paragraph mb-0">- - -</p>
                                                 <div class="valor-anunc">R$ - - -</div>
                                                 </div>
