@@ -3,9 +3,9 @@
 //puxando a conexao do arquivo conexao.php
 require 'conexao.php';
 
+
+
 session_start();
-
-
 
   // Receber dados do formulário
   if (isset($_POST['criar'])) {
@@ -19,10 +19,10 @@ VALUES ('$titulo', '$descricao', '$valor', '".$_SESSION['idUsuario']."')";
 
   // Executar a consulta e verificar se foi bem-sucedida
   if (mysqli_query($conn, $sql)) {
-    echo "Dados inseridos com sucesso.";
+    echo "<script> alert('Pacote cadastrado com sucesso!');
+            </script>";
   }
-
-}
+  }
 
 ?>
 
@@ -183,7 +183,7 @@ VALUES ('$titulo', '$descricao', '$valor', '".$_SESSION['idUsuario']."')";
                             <h5 class="titulos-area-anuncios">Meus anúncios</h5>
                             <?php
                               $id_usuario = $_SESSION['idUsuario'];
-                                $sql = "SELECT * FROM pacotes pac 
+                                $sql = "SELECT * FROM pacotes pac
                                 JOIN professores pro ON pac.professor = pro.id WHERE pac.professor ='$id_usuario'";
 
                                 $result = mysqli_query($conn, $sql);
