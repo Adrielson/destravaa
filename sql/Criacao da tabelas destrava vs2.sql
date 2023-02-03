@@ -26,23 +26,24 @@ CREATE TABLE usuarios (
   FOREIGN KEY (idEndereco) REFERENCES enderecos(id)
 );
 
-CREATE TABLE usuarioProfessor (
-  id INTEGER,
-  idProfessor INTEGER NOT NULL,
-  titularidade ENUM('Tecnino, Graduado, Mestre, Doutor'),
+CREATE TABLE usuariosprofessor (
+  id INTEGER NOT NULL,
+  titularidade ENUM('Tecnico', 'Graduado', 'Mestre', 'Doutor'),
   formacao_curso VARCHAR(100),
   bio LONGTEXT,
   PRIMARY KEY(id),
-  FOREIGN KEY (idProfessor) REFERENCES usuarios (id)
+  FOREIGN KEY (id) REFERENCES usuarios(id)
 );
 
-CREATE TABLE usuarioAluno (
-  id INTEGER,
-  idAluno INTEGER NOT NULL,
-  escolaridade ENUM('Educação infantil, Fundamental, Médio, Superior, Mestrado, Doutorado'),
+
+
+CREATE TABLE usuariosaluno (
+  id INTEGER NOT NULL,
+  escolaridade ENUM('Educação infantil', 'Fundamental', 'Médio', 'Superior', 'Mestrado', 'Doutorado') NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY (idAluno) REFERENCES usuarios (id)
+  FOREIGN KEY (id) REFERENCES usuarios(id)
 );
+
 
 CREATE TABLE pacotes (
 idPacote INTEGER,
@@ -51,7 +52,7 @@ preco DECIMAL(10, 2),
 descricao LONGTEXT,
 professor integer,
 PRIMARY KEY(idPacote),
-FOREIGN KEY (professor) REFERENCES usuarioProfessor(idProfessor)
+FOREIGN KEY (professor) REFERENCES usuariosprofessor(id)
 );
 
 CREATE TABLE pedidos (
@@ -61,6 +62,9 @@ status VARCHAR(8),
 pacote INTEGER,
 data DATE,
 PRIMARY KEY(idPedido),
-FOREIGN KEY(aluno) REFERENCES usuarioAluno(idAluno),
+FOREIGN KEY(aluno) REFERENCES usuariosaluno(id),
 FOREIGN KEY(pacote) REFERENCES pacotes(idPacote)
 );
+
+
+
