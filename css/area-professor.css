@@ -14,7 +14,11 @@
     font-family: 'Work Sans', sans-serif;
 }
 
-.btn-solicitar {
+.btn-solicitar,
+.btn-nova-foto,
+.btn-editar,
+.btn-salvar,
+.btn-voltar {
     width: 150px;
     background-color: var(--color-green);
     border: none;
@@ -35,6 +39,8 @@
     border-radius: 10px;
     margin: 5px 5px;
   }
+
+  
 .card.mb-3 {
     padding: 12px;
     margin: 12px;

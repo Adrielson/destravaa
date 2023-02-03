@@ -14,7 +14,11 @@
     font-family: 'Work Sans', sans-serif;
 }
 
-.btn-editar {
+.btn-solicitar,
+.btn-nova-foto,
+.btn-editar,
+.btn-salvar,
+.btn-voltar {
     width: 150px;
     background-color: var(--color-green);
     border: none;
@@ -35,6 +39,7 @@
     border-radius: 10px;
     margin: 5px 5px;
   }
+
   body {
     /* margin-top: 20px; */
     background-color: #f2f6fc;
