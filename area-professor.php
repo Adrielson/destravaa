@@ -75,7 +75,7 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     <body>
         <?php
-        include_once 'header.php';
+        include_once 'header-logado.php';
         ?>
 
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">

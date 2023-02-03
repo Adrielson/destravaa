@@ -4,19 +4,6 @@
 require 'conexao.php';
 
 session_start();
-
-
-// exibir as informações de contato do usuario na pagina aluno
-$id_usuario = $_SESSION['idUsuario'];
-$sql = "SELECT * FROM usuarios WHERE usuarios.id ='$id_usuario'";
-
-$result = mysqli_query($conn, $sql);
-$rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +39,7 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     <body>
         <?php
-        include_once 'header.php';
+        include_once 'header-logado.php';
         ?>
 
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -62,7 +49,7 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar"
                             src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
                         <div class="text-center">
-                            <h5 class="text-uppercase mb-4"><?php echo $rows[0]["nome"];?></h5>
+                            <h5 class="text-uppercase mb-4">Renan Maia</h5>
                         </div>
                     </div>
 
@@ -78,7 +65,7 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                         <td>
                                             <p class="text-muted mb-0"><a href="/cdn-cgi/l/email-protection"
                                                     class="__cf_email__"
-                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88"><?php echo $rows[0]["email"];?></a>
+                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88">[email&#160;protected]</a>
                                             </p>
                                         </td>
                                     </tr>
@@ -129,7 +116,7 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                 <p class="descricao-busca">Consulte livremente as aulas disponíveis
                                     e entre em contato com o professor ideal de acordo com os seus critérios
                                     (tarifa, diplomas, avaliações, aulas online ou presenciais).</p>
-                                <form class="form-inline" action="lista-pacotes-busca.php" method="post">
+                                <form class="form-inline" action="lista-pacotes-busca.php" method="get">
                                     <input class="form-control mr-sm-2" type="search"
                                         placeholder="O que deseja aprender?" aria-label="Buscar" name="query">
                                     <button class="btn btn-outline-success my-2 my-sm-0"
