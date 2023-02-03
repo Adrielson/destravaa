@@ -46,6 +46,24 @@ DELIMITER ;
 
 
 
+
+
+-- gatilho pra adicionar id à tabela dos enderecos para deixar vinculado à tabela usuario caso um novo usuario seja cadastro :
+
+DELIMITER $$
+CREATE TRIGGER tr_endereco_insert
+AFTER INSERT ON usuarios
+FOR EACH ROW
+BEGIN
+    INSERT INTO enderecos (id)
+    VALUES (NEW.id);
+END$$
+DELIMITER ;
+
+
+
+
+
 -- gatilho para adicionar id à tabela pacotes :
 
 DELIMITER $$

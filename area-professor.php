@@ -31,8 +31,7 @@ VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
 
 // exibir as informações de contato do usuario na pagina professor
 $id_usuario = $_SESSION['idUsuario'];
-$sql = "SELECT * FROM pacotes pac
-                                JOIN usuarios pro ON pac.professor = pro.id WHERE pac.professor ='$id_usuario'";
+$sql = "SELECT * FROM  usuarios  WHERE usuarios.id ='$id_usuario'";
 
 $result = mysqli_query($conn, $sql);
 $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);

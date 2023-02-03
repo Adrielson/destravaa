@@ -5,6 +5,9 @@ session_start();
 //puxando a conexao do arquivo conexao.php
 require 'conexao.php';
 
+
+
+// cadastrando dados do usuario
 if (isset($_POST['cadastrar'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];

@@ -21,6 +21,7 @@ CREATE TABLE usuarios (
   email VARCHAR(100) NOT NULL,
   senha VARCHAR(100) NOT NULL,
   tipo ENUM('professor', 'aluno') NOT NULL,
+  telefone VARCHAR(15),
   idEndereco INTEGER,
   PRIMARY KEY(id),
   FOREIGN KEY (idEndereco) REFERENCES enderecos(id)
