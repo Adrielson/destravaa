@@ -7,7 +7,7 @@ require 'conexao.php';
 
 session_start();
 
-// Receber dados do formulário
+// Receber dados do formulário para criar pacote
 if (isset($_POST['criar'])) {
     $titulo = $_POST['titulo'];
     $descricao = $_POST['descricao'];
@@ -21,10 +21,7 @@ VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
     if (mysqli_query($conn, $sql)) {
         echo "<script> alert('Pacote cadastrado com sucesso!');
             </script>";
-        if (mysqli_query($conn, $sql)) {
             header("Location: area-professor.php");
-        }
-
     }
 }
 
