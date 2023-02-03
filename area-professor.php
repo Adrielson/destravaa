@@ -184,7 +184,7 @@ VALUES ('$titulo', '$descricao', '$valor', '".$_SESSION['idUsuario']."')";
                             <?php
                               $id_usuario = $_SESSION['idUsuario'];
                                 $sql = "SELECT * FROM pacotes pac
-                                JOIN professores pro ON pac.professor = pro.id WHERE pac.professor ='$id_usuario'";
+                                JOIN usuarios pro ON pac.professor = pro.id WHERE pac.professor ='$id_usuario'";
 
                                 $result = mysqli_query($conn, $sql);
                                 if (mysqli_num_rows($result) > 0) {

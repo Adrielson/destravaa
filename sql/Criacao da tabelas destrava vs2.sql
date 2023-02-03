@@ -27,7 +27,7 @@ CREATE TABLE usuarios (
 );
 
 CREATE TABLE usuariosprofessor (
-  id INTEGER NOT NULL,
+  id INTEGER,
   titularidade ENUM('Tecnico', 'Graduado', 'Mestre', 'Doutor'),
   formacao_curso VARCHAR(100),
   bio LONGTEXT,
@@ -38,8 +38,8 @@ CREATE TABLE usuariosprofessor (
 
 
 CREATE TABLE usuariosaluno (
-  id INTEGER NOT NULL,
-  escolaridade ENUM('Educação infantil', 'Fundamental', 'Médio', 'Superior', 'Mestrado', 'Doutorado') NOT NULL,
+  id INTEGER,
+  escolaridade ENUM('Educação infantil', 'Fundamental', 'Médio', 'Superior', 'Mestrado', 'Doutorado'),
   PRIMARY KEY(id),
   FOREIGN KEY (id) REFERENCES usuarios(id)
 );
