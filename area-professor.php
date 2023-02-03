@@ -55,7 +55,7 @@ VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/area-professor.css">
+    <link rel="stylesheet" href="css/area-professor2.css">
     <!-- Importação kit de icones fontawesome -->
     <script src="https://kit.fontawesome.com/84532cf285.js" crossorigin="anonymous"></script>
     <script src="js/all.min.js"></script>
@@ -188,7 +188,7 @@ VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
                             <div class="card mb-3">
                                 <h5 class="titulos-area-anuncios">Meus anúncios</h5>
                                 <?php
-                                include_once 'lista-pacotes.php';
+                                include_once 'lista-pacotes-professor.php';
                                 ?>
                             </div>
                         </div>
