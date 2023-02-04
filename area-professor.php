@@ -135,12 +135,12 @@ $row = mysqli_fetch_assoc($result);
                                             <p class="text-muted mb-0"><?php echo $row["formacao_curso"]; ?></p>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td><strong>Intituição</strong></td>
                                         <td>
                                             <p class="text-muted mb-0">Ufopa</p>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <td><strong>Cidade</strong></td>
                                         <td>

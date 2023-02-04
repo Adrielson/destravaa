@@ -14,6 +14,8 @@ if (isset($_POST['cadastrar'])) {
     $senha = $_POST['senha'];
     $tipo = $_POST['tipo'];
 
+    $hash = hash('sha256', $senha);
+
 
     if (empty($tipo)) {
         echo "<script> alert('Voce precisa escolher uma opção!');
@@ -124,7 +126,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="senha" name="senha" placeholder="Senha" />
+                        <input type="password" name="senha" placeholder="Senha" />
                     </div>
                     <button class="btn" name="submit">
                         Entrar <i class="fa-solid fa-arrow-right-to-bracket"></i>

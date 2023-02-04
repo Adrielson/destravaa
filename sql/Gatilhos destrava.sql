@@ -1,14 +1,14 @@
 
 -- gatilho pra adicionar id à tabela usuarios :
 
-DELIMITER $$
-CREATE TRIGGER trg_usuarios_before_insert_id
-BEFORE INSERT ON usuarios
-FOR EACH ROW
-BEGIN
-  SET NEW.id = COALESCE((SELECT MAX(id) + 1 FROM usuarios), 1);
-END$$
-DELIMITER ;
+-- DELIMITER $$
+-- CREATE TRIGGER trg_usuarios_before_insert_id
+-- BEFORE INSERT ON usuarios
+-- FOR EACH ROW
+-- BEGIN
+--   SET NEW.id = COALESCE((SELECT MAX(id) + 1 FROM usuarios), 1);
+-- END$$
+-- DELIMITER ;
 
 
 
@@ -66,14 +66,14 @@ DELIMITER ;
 
 -- gatilho para adicionar id à tabela pacotes :
 
-DELIMITER $$
-CREATE TRIGGER trg_pacotes_before_insert_id
-BEFORE INSERT ON pacotes
-FOR EACH ROW
-BEGIN
-  SET NEW.idPacote = COALESCE((SELECT MAX(idPacote) + 1 FROM pacotes), 1);
-END$$
-DELIMITER ;
+-- DELIMITER $$
+-- CREATE TRIGGER trg_pacotes_before_insert_id
+-- BEFORE INSERT ON pacotes
+-- FOR EACH ROW
+-- BEGIN
+--   SET NEW.idPacote = COALESCE((SELECT MAX(idPacote) + 1 FROM pacotes), 1);
+-- END$$
+-- DELIMITER ;
 
 
 

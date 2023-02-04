@@ -4,7 +4,16 @@
 require 'conexao.php';
 
 session_start();
+
+// exibir as informações de contato do usuario na pagina aluno
+$id_usuario = $_SESSION['idUsuario'];
+$sql = "SELECT * FROM  usuarios  WHERE usuarios.id ='$id_usuario'";
+
+$result = mysqli_query($conn, $sql);
+$rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +58,9 @@ session_start();
                     <div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar"
                             src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
                         <div class="text-center">
-                            <h5 class="text-uppercase mb-4">Renan Maia</h5>
+                            <h5 class="text-uppercase mb-4">
+                                <?php echo $rows[0]["nome"]; ?>
+                            </h5>
                         </div>
                     </div>
 
@@ -65,14 +76,16 @@ session_start();
                                         <td>
                                             <p class="text-muted mb-0"><a href="/cdn-cgi/l/email-protection"
                                                     class="__cf_email__"
-                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88">[email&#160;protected]</a>
+                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88"><?php echo $rows[0]["email"]; ?></a>
                                             </p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Telefone:</strong></td>
                                         <td>
-                                            <p class="text-muted mb-0">9399199-9999</p>
+                                            <p class="text-muted mb-0">
+                                                <?php echo $rows[0]["telefone"]; ?>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -88,13 +101,13 @@ session_start();
                                     <tr>
                                         <td><strong>Escolaridade:</strong></td>
                                         <td>
-                                            <p class="text-muted mb-0">Fundamental</p>
+                                            <p class="text-muted mb-0"> </p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Cidade</strong></td>
                                         <td>
-                                            <p class="text-muted mb-0">Santarém</p>
+                                            <p class="text-muted mb-0"> </p>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -142,7 +155,7 @@ session_start();
                                     // if (!$conn) {
                                     //     die("Não foi possível conectar ao banco de dados: " . mysqli_connect_error());
                                     // }
-
+                                
                                     $sql = "SELECT pacotes.*, usuarios.nome as nome_professor, usuarios.telefone
                                     FROM pacotes
                                     JOIN usuarios ON pacotes.professor = usuarios.id
@@ -152,20 +165,22 @@ session_start();
 
                                         echo "<table>";
                                         echo "<tr>";
-                                        echo "<th>ID do Pacote</th>";
-                                        echo "<th>Nome do Produto</th>";
-                                        echo "<th>Preço</th>";
-                                        echo "<th>Descrição</th>";
-                                        echo "<th>telefone</th>";
+                                        // echo "<th>ID do Pacote</th>";
+                                        echo "<th>Professor</th>";
+                                        echo "<th> Aula</th>";
+                                        echo "<th> Descrição</th>";
+                                        echo "<th> Contato</th>";                                        
+                                        echo "<th> Preço</th>";
                                         echo "</tr>";
                                         while ($row = mysqli_fetch_assoc($result)) {
                                             // include_once 'lista-pacotes-busca.php';
                                             echo "<tr>";
-                                            echo "<td>" . $row['idPacote'] . "</td>";
+                                            // echo "<td>" . $row['idPacote'] . "</td>";
+                                            echo "<td>" . $row['nome_professor'] . "</td>";
                                             echo "<td>" . $row['produto'] . "</td>";
-                                            echo "<td>" . $row['preco'] . "</td>";
                                             echo "<td>" . $row['descricao'] . "</td>";
                                             echo "<td>" . $row['telefone'] . "</td>";
+                                            echo "<td>" . $row['preco'] . "</td>";
                                             echo "</tr>";
                                         }
                                         echo "</table>";
@@ -181,13 +196,20 @@ session_start();
 
                             </div>
 
-                            <div class="minhas-aulas">
+                            <!-- <div class="minhas-aulas">
                                 <div class="card mb-3">
                                     <h5 class="titulos-area-aluno ">Aulas solicitadas</h5>
                                     <?php
-                                    include_once 'lista-pacotes-solicitados.php';
+                                    // include_once 'lista-pacotes-solicitados.php';
                                     ?>
                                 </div>
+                            </div> -->
+
+                            <div class="resultados-busca">
+                                <h6 class="form-buscar">Aulas disponíveis</h6>
+                                <?php
+                                include_once 'lista-pacotes-busca.php';
+                                ?>
                             </div>
                         </div>
                     </div>
