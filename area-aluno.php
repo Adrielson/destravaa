@@ -154,8 +154,51 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                             <div class="card mb-3">
                                 <h5 class="titulos-area-aluno ">Aulas solicitadas</h5>
                                 <?php
-                                include_once 'lista-pacotes-solicitados.php';
-                                ?>
+  $id_sessao = $_SESSION['idUsuario'];
+    $sql = "SELECT pacotes.*, usuarios.nome as nome_professor
+    FROM pacotes
+    JOIN usuarios ON pacotes.professor = usuarios.id
+    JOIN pedidos ON pedidos.pacote = pacotes.idPacote
+    WHERE pedidos.aluno = $id_sessao AND pedidos.status = 'ocupado'";
+
+ $result = mysqli_query($conn, $sql);
+ if (mysqli_num_rows($result) > 0) {
+     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+     foreach ($rows as $row) { ?>
+         <div class="aula">
+         <form action="lista-pacotes-solicitados.php" method="post">
+         <input type="hidden" name="id_pacote" value='<?php echo $row['idPacote']; ?>'>
+             <div class="sp-author">
+                 <a href="#" class="sp-author-avatar">
+                     <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                 </a>
+                 <p>
+                     <?php echo $row["nome_professor"]; ?>
+                 </p>
+             </div>
+             <div class="sp-content">
+                 <div class="titulo-anuncio">
+                     <?php echo $row["produto"]; ?>
+                 </div>
+                 <p class="sp-paragraph mb-0">
+                     <?php echo $row["descricao"]; ?>
+                 </p>
+                 <div class="valor-anunc">R$
+                     <?php echo $row["preco"]; ?>
+                 </div>
+             </div>
+            </form>
+        </div>
+         <?php
+     }
+ } else {
+     ?>
+     <div>
+         <div class="titulo-anuncio">Não há pacotes solicitados</div>
+     </div>
+     <?php
+ }
+?>
                             </div>
                         </div>
                     </div>

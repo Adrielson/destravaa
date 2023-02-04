@@ -77,6 +77,9 @@ DELIMITER ;
 
 
 
+
+
+
 -- gatilho para validar email da tabela usuarios :
 
 DELIMITER $$

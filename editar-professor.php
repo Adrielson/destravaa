@@ -27,7 +27,7 @@ if (isset($_POST['cadastrar'])) {
     $conn->autocommit(false);
 
 try {
-   // Executar a primeira consulta para salvar dados na tabela 1
+   // Executar a primeira consulta para salvar dados na tabela usuarios
     if ($nome != null) {
       $stmt = $conn->prepare("UPDATE usuarios SET nome = ? WHERE id = ?");
       $stmt->bind_param("si", $nome, $id_usuario);
@@ -39,7 +39,7 @@ try {
       $stmt->execute();
    }
 
-   // Executar a segunda consulta para salvar dados na tabela 2
+   // Executar a segunda consulta para salvar dados na tabela usuariosProfessor
     if ($bio != null) {
       $stmt = $conn->prepare("UPDATE usuariosprofessor SET bio = ? WHERE id = ?");
       $stmt->bind_param("si", $bio, $id_usuario);
@@ -56,7 +56,7 @@ try {
       $stmt->execute();
    }
 
-   // Executar a terceira consulta para salvar dados na tabela 3
+   // Executar a terceira consulta para salvar dados na tabela enderecos
     if ($rua != null) {
       $stmt = $conn->prepare("UPDATE enderecos SET rua = ? WHERE id = ?");
       $stmt->bind_param("si", $rua, $id_usuario);

@@ -28,11 +28,14 @@ VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
 
 // exibir as informações de contato do usuario na pagina professor
 $id_usuario = $_SESSION['idUsuario'];
-$sql = "SELECT * FROM  usuarios  WHERE usuarios.id ='$id_usuario'";
+$sql = "SELECT usuarios.*, enderecos.*, usuariosprofessor.*
+FROM usuarios
+JOIN enderecos ON usuarios.id = enderecos.id
+JOIN usuariosprofessor ON usuarios.id = usuariosprofessor.id
+WHERE usuarios.id ='$id_usuario'";
 
 $result = mysqli_query($conn, $sql);
-$rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+$row = mysqli_fetch_assoc($result);
 ?>
 
 
@@ -82,14 +85,9 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                             src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
                         <div class="text-center">
                             <h5 class="text-uppercase mb-4">
-                                <?php echo $rows[0]["nome"]; ?>
+                                <?php echo $row["nome"]; ?>
                             </h5>
-                            <p class="text-muted fz-base">Graduando em Bacharelado em Ciência da Computação pelo
-                                Instituto de Engenharia e Geociências da Universidade Federal do Oeste do Pará (UFOPA),
-                                em Santarém, PA, Brasil (2017-2022). Bolsista do Programa de Educação Tutorial (PET) do
-                                Ministério da Educação (MEC). Atualmente é membro no Grupo de Estudo e Pesquisa do
-                                Laboratório de Computação Aplicada (LACA-UFOPA) desenvolvendo projetos de análise de
-                                redes sociais. </p>
+                            <p class="text-muted fz-base"><?php echo $row["bio"]; ?> </p>
                         </div>
                     </div>
 
@@ -105,14 +103,14 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                         <td>
                                             <p class="text-muted mb-0"><a href="/cdn-cgi/l/email-protection"
                                                     class="__cf_email__"
-                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88"><?php echo $rows[0]["email"]; ?></a>
+                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88"><?php echo $row["email"]; ?></a>
                                             </p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Telefone:</strong></td>
                                         <td>
-                                            <p class="text-muted mb-0">9399199-9999</p>
+                                            <p class="text-muted mb-0"><?php echo $row["telefone"]; ?></p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -128,13 +126,13 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                     <tr>
                                         <td><strong>Título:</strong></td>
                                         <td>
-                                            <p class="text-muted mb-0">Bacharel</p>
+                                            <p class="text-muted mb-0"><?php echo $row["titularidade"]; ?></p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Curso</strong></td>
                                         <td>
-                                            <p class="text-muted mb-0">Ciência da computação</p>
+                                            <p class="text-muted mb-0"><?php echo $row["formacao_curso"]; ?></p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -146,7 +144,7 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                     <tr>
                                         <td><strong>Cidade</strong></td>
                                         <td>
-                                            <p class="text-muted mb-0">Santarém</p>
+                                            <p class="text-muted mb-0"><?php echo $row["cidade"]; ?></p>
                                         </td>
                                     </tr>
                                 </tbody>
