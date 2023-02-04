@@ -15,7 +15,8 @@ if (isset($_POST['query'])) {
     WHERE NOT EXISTS (
     SELECT *
     FROM pedidos
-    WHERE pedidos.pacote = pacotes.idPacote AND pedidos.status = 'ocupado')";
+    WHERE pedidos.pacote = pacotes.idPacote AND pedidos.status = 'ocupado')
+    AND (pacotes.nome LIKE '%$query%')";
 
     $result = mysqli_query($conn, $sql);
 

@@ -4,7 +4,6 @@
 require 'conexao.php';
 
 
-session_start();
 
 if (isset($_POST['solicitar'])) {
     $id_usuario = $_SESSION['idUsuario'];
